@@ -1,0 +1,25 @@
+<div class="order-history-container">
+    <!-- <app-filter-form (filterUpdate)="changeFilter($event)"></app-filter-form> -->
+    <table class="order-table">
+      <tr>
+        <th>Description</th>
+        <th>Restaurant</th>
+        <th>Rating</th>
+        <th>Order Again?</th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let order of orders; index as i">
+        <td>{{ order.description }}</td>
+        <td>{{ order.restaurant }}</td>
+        <td>{{ order.rating }}</td>
+        <td *ngIf="order.orderAgain">✓</td>
+        <td *ngIf="!order.orderAgain"></td>
+        <td>
+          <button (click)="removeOrder(order.id!)">
+            <i class="fa-solid fa-trash-can" title="Delete"></i>
+          </button>
+        </td>
+      </tr>
+    </table>
+    <app-add-order-form (orderSave)="addOrder($event)"></app-add-order-form>
+  </div>
